@@ -1,0 +1,19 @@
+{
+  "known_bad": ["flaky-integration"],
+  "workloads": [
+    {
+      "name": "unit-tests",
+      "command": "make run-unit-test",
+      "retryable_exit_codes": [1, 124],
+      "max_attempts": 3,
+      "timeout_sec": 1800,
+      "stall_timeout_sec": 1800,
+      "cleanup_command": "make clean",
+      "restart_command": "pkill -f fddev || true"
+    },
+    {
+      "name": "flaky-integration",
+      "command": "make run-integration-test"
+    }
+  ]
+}
